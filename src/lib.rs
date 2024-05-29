@@ -1,10 +1,10 @@
 use pyo3::prelude::*;
 
 // globals
-static X_INIT: f64 = 151.0; // initial y guess
-static N_EPOCHS: i32 = 100; // number of iterations for algorithm
-static ALPHA: f64 = 0.01; // learning rate
-static Y_MIN_THRESHOLD: f64 = 0.00001; // early y_min threshold
+const X_INIT: f64 = 151.0; // initial y guess
+const N_EPOCHS: i32 = 100; // number of iterations for algorithm
+const ALPHA: f64 = 0.01; // learning rate
+const Y_MIN_THRESHOLD: f64 = 0.00001; // early y_min threshold
 
 /*
 - original polynomial expression:
