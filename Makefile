@@ -4,13 +4,13 @@ help:
 	@echo make deploy
 	@echo make clean
 
-build:
+build: clean
 	maturin develop
 
-deploy:
+deploy: build
 	maturin build
 
-run:
+run: deploy
 	python python/main.py
 
 clean:
