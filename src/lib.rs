@@ -106,7 +106,7 @@ fn gradient(x: f64) -> f64 {
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
-fn optimize() {
+fn optimize() -> f64 {
     println!("X_INIT: {}", X_INIT);
     println!("N_EPOCHS: {}", N_EPOCHS);
     println!("ALPHA: {}", ALPHA);
@@ -124,6 +124,8 @@ fn optimize() {
     println!("    y_init:  {:.2}", f(X_INIT));
     println!("    x_new:   {:.9}", x_new);
     println!("    y_min:   {:.9}", y_min);
+
+    y_min
 }
 
 /// A Python module implemented in Rust.
@@ -131,4 +133,17 @@ fn optimize() {
 fn hello_optimizer_maturin(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(optimize, m)?)?;
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::optimize;
+    use assert_approx_eq::assert_approx_eq;
+
+    #[test]
+    fn it_optimizes() {
+        let y_min = optimize();
+        println!("y_min: {:?}", y_min);
+        assert_approx_eq!(y_min, 7.0, 0.0001);
+    }
 }
