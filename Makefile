@@ -11,7 +11,7 @@ deploy:
 	maturin build
 
 run:
-	python python/main.py
+	uv run python/main.py
 
 clean:
 	rm -fr ./target
